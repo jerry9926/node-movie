@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../includes/head', {title: title})%>
+  <body>
+    <%- include('../includes/header', {title: title})%>
+    <div class="container">
+    	<div class="row">
+    		<table class="table table-hover table-bordered">
+    			<thead>
+    				<tr>
+    					<th>电影名字</th>
+    					<th>导演</th>
+    					<th>国家</th>
+    					<th>上映年份</th>
+    					<th>录入时间</th>
+    					<th>查看</th>
+    					<th>更新</th>
+    					<th>删除</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<% movies.forEach(function(item){ %>
+						<tr class="item-id-<%= item.id %>">
+							<td><%= item.title %></td>
+							<td><%= item.director %></td>
+							<td><%= item.country %></td>
+							<td><%= item.year %></td>
+							<td><%= moment(item.meta.createdAt).format('MM/DD/YYYY') %></td>
+							<td>
+								<a href="/detail/<%= item.id %>" target="_blank">查看</a>
+							</td>
+							<td>
+								<a href="/admin/update/<%= item.id %>" target="_blank">修改</a>
+							</td>
+							<td>
+								<button class="btn btn-danger del" type="button" data-id="<%= item.id %>">删除</button>
+							</td>
+						</tr>
+    				<%	}) %>
+    			</tbody>
+    		</table>
+    	</div>
+    </div>
+    <script src="/javascripts/admin.js"></script>
+  </body>
+</html>
